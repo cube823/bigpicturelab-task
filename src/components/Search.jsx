@@ -1,23 +1,23 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import InputBase from '@material-ui/core/InputBase'
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import { useState } from 'react';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
 
-  textField: {
+  inputBase: {
     width: '88%',
     marginTop: 30,
     marginBottom: 30,
-  },
-
-  textStyle: {
-    fontSize: '1.2rem',
+    border: "2px solid lightgray",
+    borderRadius: 4,
+    padding: theme.spacing(1),
+    fontSize: '1.2rem'
   },
 
   button: {
@@ -46,11 +46,10 @@ const Search = props => {
 
   return (
     <div className={classes.root}>
-        <TextField 
-          className={classes.textField}
+        <InputBase 
+          className={classes.inputBase}
           placeholder="동 검색"
           variant="outlined"
-          InputProps={{className: classes.textStyle}}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
