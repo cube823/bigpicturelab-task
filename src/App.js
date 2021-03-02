@@ -12,7 +12,7 @@ function App() {
         <Grid item xs={false} sm={2} />
         
         <Grid item xs={12} sm={8}>
-          <FirstBox imgSrc="https://cdn.pixabay.com/photo/2014/08/12/00/01/santorini-416136_1280.jpg"/>
+          <FirstBox imgSrc="https://placeimg.com/220/220/any"/>
           <Search/>
           <Content/>
         </Grid>

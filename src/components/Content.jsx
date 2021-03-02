@@ -4,9 +4,9 @@ import dongList from './constant';
 
 const Content = () => {
 
-  const getDongCard = (dongObj) => {
+  const getDongCard = dongObj => {
     return(
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={4} key={dongObj.id}>
         <DongCard {...dongObj} />
       </Grid>
     )

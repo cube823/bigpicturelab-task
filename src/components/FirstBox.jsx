@@ -41,7 +41,7 @@ const FirstBox = props => {
       <Typography variant="h4">
           대전시 마을계획
         </Typography>
-        <Typography variant="subtitled1" component="p" style={{'fontSize': '1.2rem'}}>
+        <Typography variant="subtitle1" component="p" style={{'fontSize': '1.2rem'}}>
           &ensp;대전광역시에서 진행하는 마을계획입니다.
         </Typography>
       </CardContent>
