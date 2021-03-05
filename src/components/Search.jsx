@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
 import { Button } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
 import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,4 +59,4 @@ const Search = (props) => {
   )
 }
 
-export default withStyles(useStyles)(Search)
+export default Search

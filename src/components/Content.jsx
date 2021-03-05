@@ -1,10 +1,10 @@
 import { Grid } from '@material-ui/core'
 import DongCard from './DongCard'
-import { useState, useEffect, useMemo } from 'react'
-import axios from 'axios'
+import { useMemo } from 'react'
 import AlertDialog from './AlertDialog'
 
-const Content = () => {
+const Content = (props) => {
+  const { dongs, error } = props
   const getDongCard = (dongObj) => {
     return (
       <Grid item xs={12} sm={4} key={dongObj.id}>
@@ -12,16 +12,6 @@ const Content = () => {
       </Grid>
     )
   }
-
-  const [dongs, setDongs] = useState([])
-  const [error, setError] = useState()
-
-  useEffect(() => {
-    axios
-      .get('http://143.248.137.17:24000/communities')
-      .then((response) => setDongs(response.data.communities))
-      .catch((error) => setError(error))
-  }, [])
 
   const errorDialog = () => {
     if (error) {

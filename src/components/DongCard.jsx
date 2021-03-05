@@ -5,8 +5,7 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import DetailDong from './DetailDong'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +32,11 @@ const DongCard = (props) => {
   const { id, name, isUser } = props
   const classes = useStyles()
 
+  const buttonHandler = (e) => {
+    e.preventDefault()
+    window.location.assign(`/${id}`)
+  }
+
   return (
     <Router>
       <Card
@@ -49,16 +53,11 @@ const DongCard = (props) => {
           <Typography variant="h5" style={{ marginBottom: '3rem' }}>
             {name}
           </Typography>
-          <Link to={id}>
-            <CardActions>
-              <Button variant="contained" className={classes.button}>
-                들어가기
-              </Button>
-            </CardActions>
-          </Link>
-          <Switch>
-            <Route exact path={id} component={DetailDong} />
-          </Switch>
+          <CardActions>
+            <Button variant="contained" className={classes.button} onClick={buttonHandler}>
+              들어가기
+            </Button>
+          </CardActions>
         </CardContent>
       </Card>
     </Router>
