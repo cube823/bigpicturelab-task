@@ -8,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import AlertDialog from './AlertDialog'
+import { useParams } from 'react-router-dom'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -26,8 +28,8 @@ const useStyles = makeStyles({
   },
 })
 
-const DetailDong = (props) => {
-  const { id } = props
+const DetailDong = () => {
+  const { id } = useParams()
   const classes = useStyles()
   const [dong, setDong] = useState([])
   const [error, setError] = useState()
@@ -39,13 +41,11 @@ const DetailDong = (props) => {
       .catch((error) => setError(error))
   }, [id])
 
-  const errorMessage = () => {
-    if (error) return error.status(400).json({})
-  }
-
-  const detail = () => {
-    if (!error) {
-      return (
+  return (
+    <div>
+      {error ? (
+        <AlertDialog />
+      ) : (
         <TableContainer component={Paper}>
           <Table className={classes.root}>
             <TableHead>
@@ -70,14 +70,7 @@ const DetailDong = (props) => {
             </TableBody>
           </Table>
         </TableContainer>
-      )
-    }
-  }
-
-  return (
-    <div>
-      {errorMessage}
-      {detail()}
+      )}
     </div>
   )
 }

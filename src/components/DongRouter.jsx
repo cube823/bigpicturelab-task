@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Content from './Content'
 import DetailDong from './DetailDong'
 
@@ -9,15 +9,10 @@ const DongRouter = () => {
         <Content />
       </Route>
       <Switch>
-        <Route exact path="/:id" children={<Child />} />
+        <Route exact path="/:id" children={<DetailDong />} />
       </Switch>
     </Router>
   )
-}
-
-const Child = () => {
-  let { id } = useParams()
-  return <DetailDong id={id} />
 }
 
 export default DongRouter

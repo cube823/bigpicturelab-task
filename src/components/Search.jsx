@@ -40,7 +40,7 @@ const Search = (props) => {
 
   const onClick = (e) => {
     e.preventDefault()
-    return console.log(text)
+    console.log(text)
   }
 
   return (
