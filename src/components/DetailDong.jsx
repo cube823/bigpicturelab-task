@@ -44,7 +44,7 @@ const DetailDong = () => {
   return (
     <div>
       {error ? (
-        <AlertDialog />
+        <AlertDialog error={error} />
       ) : (
         <TableContainer component={Paper}>
           <Table className={classes.root}>

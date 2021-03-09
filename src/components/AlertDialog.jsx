@@ -17,9 +17,7 @@ const AlertDialog = (props) => {
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle id="alert-dialog-title">
-          {error ? error.message : '400 Bad Request'}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{error.message}</DialogTitle>
         <DialogContent>
           <DialogContentText
             id="alert-dialog-description"
