@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
 import { Button } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
 import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +40,7 @@ const Search = (props) => {
 
   const onClick = (e) => {
     e.preventDefault()
-    console.log('찾기 기능 수행 예정')
+    console.log(text)
   }
 
   return (
@@ -52,6 +51,7 @@ const Search = (props) => {
         variant="outlined"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        // autoFocus
       />
       <Button size="small" variant="outlined" className={classes.button} onClick={onClick}>
         검색
@@ -60,4 +60,4 @@ const Search = (props) => {
   )
 }
 
-export default withStyles(useStyles)(Search)
+export default Search
