@@ -8,7 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import AlertDialog from './AlertDialog'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -41,35 +40,45 @@ const DetailDong = (props) => {
   }, [id])
 
   const errorMessage = () => {
-    if (error) return <AlertDialog />
+    if (error) return error.status(400).json({})
+  }
+
+  const detail = () => {
+    if (!error) {
+      return (
+        <TableContainer component={Paper}>
+          <Table className={classes.root}>
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">동 이름 </StyledTableCell>
+                <StyledTableCell align="center"> 중국&nbsp;이름 </StyledTableCell>
+                <StyledTableCell align="center">면적</StyledTableCell>
+                <StyledTableCell align="center">가구&nbsp;수</StyledTableCell>
+                <StyledTableCell align="center">인구</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow key={dong.name}>
+                <TableCell component="th" scope="row" align="center">
+                  {dong.name}
+                </TableCell>
+                <TableCell align="center">{dong.chinese}</TableCell>
+                <TableCell align="center">{dong.area}</TableCell>
+                <TableCell align="center">{dong.household}</TableCell>
+                <TableCell align="center">{dong.population}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )
+    }
   }
 
   return (
-    <TableContainer component={Paper}>
-      {errorMessage()}
-      <Table className={classes.root}>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">동 이름 </StyledTableCell>
-            <StyledTableCell align="center"> 중국&nbsp;이름 </StyledTableCell>
-            <StyledTableCell align="center">면적</StyledTableCell>
-            <StyledTableCell align="center">가구&nbsp;수</StyledTableCell>
-            <StyledTableCell align="center">인구</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow key={dong.name}>
-            <TableCell component="th" scope="row" align="center">
-              {dong.name}
-            </TableCell>
-            <TableCell align="center">{dong.chinese}</TableCell>
-            <TableCell align="center">{dong.area}</TableCell>
-            <TableCell align="center">{dong.household}</TableCell>
-            <TableCell align="center">{dong.population}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div>
+      {errorMessage}
+      {detail()}
+    </div>
   )
 }
 

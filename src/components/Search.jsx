@@ -40,7 +40,7 @@ const Search = (props) => {
 
   const onClick = (e) => {
     e.preventDefault()
-    console.log('찾기 기능 수행 예정')
+    return console.log(text)
   }
 
   return (
@@ -51,6 +51,7 @@ const Search = (props) => {
         variant="outlined"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        // autoFocus
       />
       <Button size="small" variant="outlined" className={classes.button} onClick={onClick}>
         검색
