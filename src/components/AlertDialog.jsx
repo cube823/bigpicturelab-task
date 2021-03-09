@@ -14,10 +14,17 @@ const AlertDialog = (props) => {
     setOpen(false)
   }
 
+  const errorMessageFinder = () => {
+    if (error) {
+      return error.message
+    }
+    return '400 Bad Request'
+  }
+
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle id="alert-dialog-title">{error.message}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{errorMessageFinder()}</DialogTitle>
         <DialogContent>
           <DialogContentText
             id="alert-dialog-description"
