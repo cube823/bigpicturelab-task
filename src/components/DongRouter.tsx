@@ -1,12 +1,15 @@
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Content from './Content'
 import DetailDong from './DetailDong'
+import FirstBox from './FirstBox'
+import Search from './Search'
 
 const DongRouter = () => {
   return (
     <Router>
       <Route exact path="/">
-        <Content />
+        <FirstBox imgSrc="https://placeimg.com/220/220/any" />
+        <Search />
       </Route>
       <Switch>
         <Route exact path="/:id" children={<DetailDong />} />

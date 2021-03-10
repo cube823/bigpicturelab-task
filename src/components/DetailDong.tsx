@@ -28,10 +28,24 @@ const useStyles = makeStyles({
   },
 })
 
+interface ParamTypes {
+  id: string
+}
+
+interface DongTypes {
+  id: string
+  name: string
+  isUser: boolean
+  chinese: string
+  area: number
+  household: number
+  population: number
+}
+
 const DetailDong = () => {
-  const { id } = useParams()
+  const { id } = useParams<ParamTypes>()
   const classes = useStyles()
-  const [dong, setDong] = useState([])
+  const [dong, setDong] = useState<DongTypes>()
   const [error, setError] = useState()
 
   useEffect(() => {
@@ -45,8 +59,8 @@ const DetailDong = () => {
     <div>
       {error ? (
         <AlertDialog error={error} />
-      ) : (
-        <TableContainer component={Paper}>
+      ) : typeof dong !== 'undefined' ? (
+        <TableContainer component={Paper} style={{ marginTop: '20%' }}>
           <Table className={classes.root}>
             <TableHead>
               <TableRow>
@@ -70,6 +84,8 @@ const DetailDong = () => {
             </TableBody>
           </Table>
         </TableContainer>
+      ) : (
+        <AlertDialog />
       )}
     </div>
   )

@@ -27,7 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const FirstBox = (props) => {
+interface ImageProps {
+  imgSrc: string
+}
+
+const FirstBox: React.FC<ImageProps> = (props) => {
   const classes = useStyles()
   const { imgSrc } = props
 
