@@ -28,11 +28,17 @@ const useStyles = makeStyles({
   },
 })
 
-const DongCard = (props) => {
+interface DongCardProps {
+  id: string
+  name: string
+  isUser: boolean
+}
+
+const DongCard: React.FC<DongCardProps> = (props) => {
   const { id, name, isUser } = props
   const classes = useStyles()
 
-  const buttonHandler = (e) => {
+  const buttonHandler = (e: React.SyntheticEvent): void => {
     e.preventDefault()
     window.location.assign(`/${id}`)
   }
@@ -45,8 +51,8 @@ const DongCard = (props) => {
         variant="outlined"
         style={{
           position: 'relative',
-          background: isUser === true && '#75E0D0',
-          border: isUser === true && '#ffffff',
+          background: isUser === true ? '#75E0D0' : 'ffffff',
+          borderColor: isUser === true ? '#ffffff' : 'lightgray',
         }}
       >
         <CardContent>

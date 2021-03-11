@@ -1,7 +1,8 @@
 import React from 'react'
+import Content from './Content'
 import { makeStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
-import { Button } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -34,28 +35,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Search = (props) => {
+const Search = () => {
   const classes = useStyles()
   const [text, setText] = useState('')
 
-  const onClick = (e) => {
+  const onClick = (e: React.SyntheticEvent): void => {
     e.preventDefault()
     console.log(text)
   }
 
   return (
-    <div className={classes.root}>
-      <InputBase
-        className={classes.inputBase}
-        placeholder="동 검색"
-        variant="outlined"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        // autoFocus
-      />
-      <Button size="small" variant="outlined" className={classes.button} onClick={onClick}>
-        검색
-      </Button>
+    <div>
+      <Grid className={classes.root}>
+        <InputBase
+          className={classes.inputBase}
+          placeholder="동 검색"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value)
+          }}
+          autoFocus
+        />
+        <Button size="small" variant="outlined" className={classes.button} onClick={onClick}>
+          검색
+        </Button>
+      </Grid>
+      <Content text={text} />
     </div>
   )
 }

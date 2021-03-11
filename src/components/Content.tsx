@@ -1,11 +1,23 @@
+import React from 'react'
 import { Grid } from '@material-ui/core'
 import DongCard from './DongCard'
 import { useMemo, useState, useEffect } from 'react'
 import AlertDialog from './AlertDialog'
 import axios from 'axios'
 
-const Content = () => {
-  const [dongs, setDongs] = useState([])
+interface ContentProps {
+  text: string
+}
+
+interface DongTypes {
+  id: string
+  name: string
+  isUser: boolean
+}
+
+const Content: React.FC<ContentProps> = (props) => {
+  const { text } = props
+  const [dongs, setDongs] = useState<DongTypes[]>([])
   const [error, setError] = useState()
 
   useEffect(() => {
@@ -15,7 +27,7 @@ const Content = () => {
       .catch((error) => setError(error))
   }, [])
 
-  const getDongCard = (dongObj) => {
+  const getDongCard: React.FC<DongTypes> = (dongObj) => {
     return (
       <Grid item xs={12} sm={4} key={dongObj.id}>
         <DongCard {...dongObj} />
@@ -23,14 +35,8 @@ const Content = () => {
     )
   }
 
-  const errorDialog = () => {
-    if (error) {
-      return <AlertDialog error={error} />
-    }
-  }
-
   // isUser, 한글 순 정렬
-  const sorting = (arr) => {
+  const sorting = (arr: DongTypes[]) => {
     arr.sort((a, b) => {
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
     })
@@ -43,8 +49,15 @@ const Content = () => {
 
   return (
     <Grid item container spacing={5}>
-      {errorDialog()}
-      {dongs_refactoring.map((dong) => getDongCard(dong))}
+      {error ? (
+        <AlertDialog error={error} />
+      ) : text === '' ? (
+        dongs_refactoring.map((dong) => getDongCard(dong))
+      ) : (
+        dongs_refactoring
+          .filter((dong) => dong.name.includes(text))
+          .map((dong) => getDongCard(dong))
+      )}
     </Grid>
   )
 }
